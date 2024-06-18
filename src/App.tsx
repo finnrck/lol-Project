@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import InputTest from './components/InputTest';
+import Result from './components/Result';
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
+
+  const [champion, setChampion] = useState<string>('');
+
+  const handleInputSubmit = (inputValue: string) => {
+    console.log("setChampion:" + inputValue)
+    setChampion(inputValue);
+    return <Navigate to="/result" replace/>;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Navigate to="/input" />} />
+          <Route path="/input" element={<InputTest onInputSubmit={handleInputSubmit}/>} />
+          <Route path="/result" element={<Result champion={champion}/>} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+.champion-button{
+  height: 3vh;
+  width: 10vw;
+  text-align: center;
+}
+.champion-button::placeholder{
+  color: black;
+}
