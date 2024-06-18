@@ -4,12 +4,11 @@ import { useLocation } from "react-router-dom";
 const Result = () => {
     const location = useLocation();
     const [data, setData] = useState(null);
-    const url = ""; //datenbank endpunkt einfügen
+    const url = "http://localhost:6969/test"; //datenbank endpunkt einfügen
     
     useEffect(() => {
-        const fetchData = async () => {
             try {
-                const response = await fetch(url, {
+                fetch(url, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -17,19 +16,15 @@ const Result = () => {
                     body: JSON.stringify({
                         champion: location.state.champion
                     })
+                }).then(response => {
+                    return response.json()
+                }).then(data => {
+                    console.log(data)
+                    setData(data)
                 }); 
-
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                const jsonData = await response.json();
-                setData(jsonData);
             } catch (error) {
                 console.error('Fetch error:', error);
             }
-        };
-
-        fetchData();
     }, [location.state.champion]);
 
     return (
