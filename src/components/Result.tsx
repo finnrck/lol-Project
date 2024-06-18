@@ -20,7 +20,7 @@ const Result = () => {
         };
 
         fetchData();
-    }, []);
+    }, [location.state.champion]);
 
     return (
         <div>
