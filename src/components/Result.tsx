@@ -1,17 +1,15 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
-interface ResultProps {
-    champion: string;
-}
-
-const Result: React.FC<ResultProps> = ({ champion }) => {
+const Result = () => {
+    const location = useLocation();
 
     // Anbindung backend für daten
-    console.log(champion);
+    
     return (
         <div>
             <h1>Ergebnisse</h1>
-            <p>Champion: {champion}</p>
+            <p>Champion: {location.state.champion}</p>
         </div>
     );
 }

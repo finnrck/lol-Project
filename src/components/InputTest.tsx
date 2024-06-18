@@ -1,16 +1,21 @@
 import React from 'react';
 import logo from '../logo.svg';
+import { useNavigate } from 'react-router-dom';
 
-interface InputTestProps {
-  onInputSubmit: (inputValue: string) => void;
-}
 
-const InputTest: React.FC<InputTestProps> = ({ onInputSubmit }) => {
+const InputTest = () => {
+
+  const navigate = useNavigate();
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       const inputValue = event.currentTarget.value;
       console.log('Eingegebener Wert:', inputValue);
-      onInputSubmit(inputValue);
+      navigate("/result", {
+        state: {
+          champion: inputValue
+        }
+      })
     }
   };
 
