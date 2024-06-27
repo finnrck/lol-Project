@@ -9,12 +9,15 @@ export async function checkDataVersion(){
         const response = await fetch(versionURL);
         const data = await response.json();
         const latestVersion = data[0];
-        const savedVersion = getLatestVersion();
+        const savedVersion = await getLatestVersion();
 
         if (latestVersion === savedVersion){
             console.log("Version uptodate");
             return;
         }
+
+        //hier speichern der neuen latestVersion + laden des DataDragons in assets
+
         console.log("Version", latestVersion , "is available")
         console.log("LatestVersion that was saved:",savedVersion)
         loadDataDragon(latestVersion);
