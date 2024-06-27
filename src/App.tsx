@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import InputTest from './components/InputTest';
-import Result from './components/Result';
+import InputTest from './views/InputTest';
+import Result from './views/Result';
 import './App.css';
 
 const App: React.FC = () => {
